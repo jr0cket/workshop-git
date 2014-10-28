@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="http://jr0cket.co.uk/dev-workshops/git-basics/local-git-workflow.html">
+  <link rel="apple-touch-icon" sizes="57x57" href="/dev-workshops/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/dev-workshops/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/dev-workshops/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/dev-workshops/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/dev-workshops/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/dev-workshops/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/dev-workshops/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/dev-workshops/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/dev-workshops/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/dev-workshops/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/dev-workshops/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/dev-workshops/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/dev-workshops/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/dev-workshops/mstile-144x144.png">
+  <link rel="stylesheet" href="/dev-workshops/css/style.css" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,700" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link rel="alternative" href="/dev-workshops/atom.xml" title="Developer Workshops" type="application/atom+xml">
+  <meta name="description" content="The local git workflow
+To recap, we have our working copy of our files on our laptop.  When we add those files using git, a copy is placed in what git calls Staging.  This allows you to assemble sever">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Developer Workshops">
+<meta property="og:url" content="http://jr0cket.co.uk/dev-workshops/dev-workshops/git-basics/local-git-workflow.html">
+<meta property="og:site_name" content="Developer Workshops">
+<meta property="og:description" content="The local git workflow
+To recap, we have our working copy of our files on our laptop.  When we add those files using git, a copy is placed in what git calls Staging.  This allows you to assemble sever">
+<meta property="og:image" content="images/git-cheat-sheet-visual-git-stages.png">
+<meta property="og:image" content="images/git-local-workflow.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Developer Workshops">
+<meta name="twitter:description" content="The local git workflow
+To recap, we have our working copy of our files on our laptop.  When we add those files using git, a copy is placed in what git calls Staging.  This allows you to assemble sever">
+<meta name="twitter:site" content="@jr0cket">
+
+  
+</head>
+
+<body>
+  <header id="header">
+  <div class="outer">
+    <div class="inner">
+      <h1 id="logo-wrap">
+        <a href="/dev-workshops//" id="logo">Hexo</a>
+        <a id="main-nav-toggle"></a>
+      </h1>
+      <nav id="main-nav">
+        <ul id="main-nav-list">
+          
+            <li class="main-nav-item">
+              <a href="/dev-workshops//git-basics" class="main-nav-link">Git Basics</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/dev-workshops//git-tips" class="main-nav-link">Git Tips</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/dev-workshops//workshops" class="main-nav-link">More Workshops</a>
+            </li>
+          
+        </ul>
+        <a href="https://twitter.com/jr0cket" id="twitter-btn" title="Twitter" target="_blank"></a>
+        <a href="https://github.com/jr0cket" id="github-btn" title="GitHub" target="_blank"></a>
+        <a id="search-btn" class="st-search-launcher" title="Search"></a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+  <article class="page" itemscope itemtype="http://schema.org/Article">
+  <header id="page-banner">
+    <div class="outer">
+      <div id="page-banner-inner" class="inner">
+        <h1 id="page-title" itemprop="name"></h1>
+      </div>
+    </div>
+  </header>
+  <div class="outer">
+    <div id="mobile-menu-wrap"></div>
+    <div class="page-content">
+      <div class="toc-wrap">
+        <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#The_local_git_workflow"><span class="toc-number">1.</span> <span class="toc-text">The local git workflow</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Understanding_git_add_and_the_staging_area"><span class="toc-number">1.1.</span> <span class="toc-text">Understanding git add and the staging area</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What_has_been_added_-_What_has_changed_(using_diff)"><span class="toc-number">1.2.</span> <span class="toc-text">What has been added - What has changed (using diff)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Removing_files_from_staging_/_index"><span class="toc-number">1.3.</span> <span class="toc-text">Removing files from staging / index</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#To_remove_a_file_from_the_index/staging"><span class="toc-number">1.4.</span> <span class="toc-text">To remove a file from the index/staging</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Commit_your_changes"><span class="toc-number">2.</span> <span class="toc-text">Commit your changes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Working_with_commits_-_git_log,_git_show"><span class="toc-number">3.</span> <span class="toc-text">Working with commits - git log, git show</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git_log"><span class="toc-number">3.1.</span> <span class="toc-text">git log</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Blogs_on_this_subject"><span class="toc-number">3.1.1.</span> <span class="toc-text">Blogs on this subject</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git_show"><span class="toc-number">3.2.</span> <span class="toc-text">git show</span></a></li></ol></li></ol>
+      </div>
+      <div class="page-entry" itemprop="articleBody">
+        <h1 id="The_local_git_workflow"><a id="chapter7">The local git workflow</a></h1>
+<p>To recap, we have our working copy of our files on our laptop.  When we add those files using git, a copy is placed in what git calls Staging.  This allows you to assemble several files for the commit.</p>
+<p>As we have a local repository right there on our laptop, we can commit all the files added to the staging area.  If you can add a series of small commits and do this often, it gives you a more detaled version history and gives you more points to jump back in time.  Regular commits helps to reduce merge conflicts when working in teams and using smaller commits gives other developers lots of details about how the project has evolved.</p>
+<p>In this visual representation you can see the different git stages in which commits can reside.</p>
+<p><img class="img-code" src="images/git-cheat-sheet-visual-git-stages.png"></p>
+<h2 id="Understanding_git_add_and_the_staging_area">Understanding git add and the staging area</h2>
+<p><img class="img-topic" src="images/git-local-workflow.png"></p>
+<p>When you add a file, you are telling git that you want it to be part of the change you are going to commit.</p>
+<p>Lets say you create a new file with 10 lines of content and then use <em>git add filenname.ext</em> to add it to git.  Then you continue to add another 5 lines the contents of that file.  If you do a commit without adding that file to git again, only the first 10 lines of content will be in that commit.</p>
+<p>If you do a second <em>git add filenname.ext</em> before you commit, then all 15 lines of content will be included in the commit.</p>
+<p>Having to add changes in this way helps you control exactly what makes up your commit without restricting the files you are working on.  Please note that it is advisable to either git add &amp; git commit often so that your changes form part of a meaningful history.</p>
+<h2 id="What_has_been_added_-_What_has_changed_(using_diff)">What has been added - What has changed (using diff)</h2>
+<p>Once you have added files to the staging area with <em>git add</em>, you can compare any changes made to files in your workspace.  Using git diff you can see all changes or specifying a file will show only the differences in that one file.</p>
+<pre><code><span class="title">git</span> diff
+git diff filename
+</code></pre><p>You can also compare the files you have added to the staging area to those you have committed using the diff option <em>—staging</em></p>
+<pre><code><span class="comment">git</span> <span class="comment">diff</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">staging</span>
+<span class="comment">git</span> <span class="comment">diff</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">staging</span> <span class="comment">filename</span>
+</code></pre><h2 id="Removing_files_from_staging_/_index">Removing files from staging / index</h2>
+<p>You can remove a file you have put in staging (git add filename) using the git command reset</p>
+<pre><code>git <span class="operator"><span class="keyword">reset</span> <span class="comment">--soft HEAD^</span></span>
+</code></pre><p>rolling back to the previous commit on the local repo<br>    git reset HEAD~1</p>
+<h2 id="To_remove_a_file_from_the_index/staging">To remove a file from the index/staging</h2>
+<pre><code><span class="comment">git</span> <span class="comment">rm</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">cached</span> <span class="comment">filename</span><span class="string">.</span><span class="comment">txt</span>
+</code></pre><h1 id="Commit_your_changes">Commit your changes</h1>
+<p>Once you have staged files using the <code>git add</code> command, you can at any point make those files a commit (think a new version).  The commit will contain all the files you added.</p>
+<pre><code>git <span class="operator"><span class="keyword">commit</span> -m <span class="string">"useful message describing the details of your commit"</span></span>
+</code></pre><p>The better commit messages you write the easier it is for others (and yourself) to understand what is going on in your project.</p>
+<h1 id="Working_with_commits_-_git_log,_git_show">Working with commits - git log, git show</h1>
+<p>  Once you have done a commit and there are no more changes in your working directory or staging area, then <em>git status</em> no longer tells you anything.  This is where <em>git log</em> comes in.</p>
+<h2 id="git_log">git log</h2>
+<p>  Git log shows you the history of the commits you have already made.</p>
+<pre><code>git <span class="built_in">log</span>
+</code></pre><p>  By default, git log has a very basic output and shows you the commit number, author, date and commit message.  You can add options to the git log command to get a much nicer and more useful output, even showing which commits have been pushed to one or more remote repositories. </p>
+<pre><code><span class="comment">git</span> <span class="comment">log</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">graph</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">oneline</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">decorate</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">date</span><span class="literal">-</span><span class="comment">relative</span>
+</code></pre><p>You can add this to your git configuration as an alias so you dont have to type it all the time</p>
+<pre><code><span class="comment">git</span> <span class="comment">config</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">global</span> <span class="comment">alias</span><span class="string">.</span><span class="comment">lg</span> <span class="comment">'log</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">graph</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">oneline</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">decorate</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">date</span><span class="literal">-</span><span class="comment">relative'</span>
+</code></pre><h3 id="Blogs_on_this_subject">Blogs on this subject</h3>
+<ul>
+<li><a href="http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks" target="_blank" rel="external">Git basic tips and tricks</a></li>
+<li><a href="http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/" target="_blank" rel="external">Must have alias examples</a></li>
+</ul>
+<h2 id="git_show">git show</h2>
+<p>  Git show displays the contents of a commit (description, files, tags, blobs, etc).  By default it shows the log message and textual diff of the text that was modified in the commit. </p>
+<p>  For tags, it shows the tag message and the referenced objects.</p>
+<p>  The command takes options applicable to the git diff-tree command to control how the changes the commit introduces are shown.</p>
+<p>  [TODO] what are the options for git show </p>
+<pre><code>git <span class="literal">show</span>
+git <span class="literal">show</span> HEAD
+git <span class="literal">show</span> <span class="number">1234567</span>
+git <span class="literal">show</span> tag-name
+</code></pre><p>  Using git show without specifying a commit number or tag will show you the latest commit from the branch you are currently in.  This is usually the same information in <em>git show HEAD</em> as HEAD is a special tag that always points to the latest commit.</p>
+<p><a href="#top">Back to top…</a> | <a href="chapter08-conflict-resolution.html">Next: Chapter 08: Conflict Resolution</a> | <a href="index.html">Workshop homepage</a></p>
+
+      </div>
+      <footer id="page-footer">
+        <time id="page-footer-updated" datetime="2014-08-24T19:50:11.000Z" itemprop="dateModified">Last updated: Aug 24 2014</time>
+        
+      </footer>
+      
+    </div>
+      
+      <aside id="sidebar-git">
+  
+    <strong class="sidebar-title">Overview</strong>
+    
+      <a href="/dev-workshops/git-basics/git-in-2-minutes.html" class="sidebar-link">Git in 2 minutes</a>
+    
+      <a href="/dev-workshops/git-basics/git-overview.html" class="sidebar-link">Git Overview</a>
+    
+      <a href="/dev-workshops/git-basics/github-overview.html" class="sidebar-link">Github Overview</a>
+    
+  
+    <strong class="sidebar-title">Getting Started</strong>
+    
+      <a href="/dev-workshops/git-basics/git-clients.html" class="sidebar-link">Git Clients</a>
+    
+      <a href="/dev-workshops/git-basics/configure-git.html" class="sidebar-link">Configure Git</a>
+    
+      <a href="/dev-workshops/git-basics/create-github-account.html" class="sidebar-link">Create Github account</a>
+    
+  
+    <strong class="sidebar-title">Manage your project with Github</strong>
+    
+      <a href="/dev-workshops/git-basics/create-a-github-repository.html" class="sidebar-link">Create a Github repository</a>
+    
+      <a href="/dev-workshops/git-basics/clone-the-github-repository.html" class="sidebar-link">Clone the Github repository</a>
+    
+      <a href="/dev-workshops/git-basics/create-your-project.html" class="sidebar-link">Create your project</a>
+    
+  
+    <strong class="sidebar-title">Basic Git Workflow</strong>
+    
+      <a href="/dev-workshops/git-basics/checking-for-changes.html" class="sidebar-link">Checking for changes</a>
+    
+      <a href="/dev-workshops/git-basics/staging-changes.html" class="sidebar-link">Staging changes</a>
+    
+      <a href="/dev-workshops/git-basics/commiting-changes.html" class="sidebar-link">Commiting Changes</a>
+    
+      <a href="/dev-workshops/git-basics/viewing-history.html" class="sidebar-link">Viewing history</a>
+    
+  
+    <strong class="sidebar-title">Branch and Merge</strong>
+    
+      <a href="/dev-workshops/git-basics/creating-a-branch.html" class="sidebar-link">Creating a branch</a>
+    
+      <a href="/dev-workshops/git-basics/merging-changes.html" class="sidebar-link">Merging Changes</a>
+    
+      <a href="/dev-workshops/git-basics/branching-strageties.html" class="sidebar-link">Branching strategies</a>
+    
+  
+    <strong class="sidebar-title">Customising Git further</strong>
+    
+      <a href="/dev-workshops/git-basics/aliases-for-nicer-git-output.html" class="sidebar-link">Aliases for nicer Git output</a>
+    
+  
+</aside>
+
+      
+  </div>
+</article>
+
+  <footer id="footer">
+  <div class="outer">
+    <div class="inner">
+      <div id="footer-copyright">
+        &copy; 2014 <a href="http://zespia.tw/">SkyArrow</a> and <a href="http://jr0cket.co.uk/">jr0cket</a><br> 
+        Background: <a href="http://subtlepatterns.com/shattered/" target="_blank">Shattered</a> by <a href="http://luukvanbaars.com/" target="_blank">Luuk van Baars</a>
+      </div>
+      <div id="footer-links">
+        <a href="https://twitter.com/jr0cket" id="footer-link-twitter" class="footer-link" target="_blank"><span>Twitter</span></a>
+        <a href="https://github.com/jr0cket" id="footer-link-github" class="footer-link" target="_blank"><span>GitHub</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+<!-- Swiftype -->
+<script>
+var Swiftype = window.Swiftype || {};
+(function() {
+  Swiftype.key = '';
+
+  /** DO NOT EDIT BELOW THIS LINE **/
+  var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+  script.src = "//s.swiftypecdn.com/embed.js";
+  var entry = document.getElementsByTagName('script')[0];
+  document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+}());
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/dev-workshops/js/retina.min.js" type="text/javascript"></script>
+
+<script src="/dev-workshops/js/script.js" type="text/javascript"></script>
+
+<!-- Google+ -->
+<script type="text/javascript" src="//apis.google.com/js/plusone.js"></script>
+<!-- Twitter -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</body>
+</html>

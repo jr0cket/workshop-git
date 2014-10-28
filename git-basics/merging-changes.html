@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="http://jr0cket.co.uk/dev-workshops/git-basics/merging-changes.html">
+  <link rel="apple-touch-icon" sizes="57x57" href="/dev-workshops/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/dev-workshops/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/dev-workshops/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/dev-workshops/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/dev-workshops/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/dev-workshops/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/dev-workshops/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/dev-workshops/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/dev-workshops/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/dev-workshops/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/dev-workshops/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/dev-workshops/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/dev-workshops/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/dev-workshops/mstile-144x144.png">
+  <link rel="stylesheet" href="/dev-workshops/css/style.css" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,700" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link rel="alternative" href="/dev-workshops/atom.xml" title="Developer Workshops" type="application/atom+xml">
+  <meta name="description" content="Conflict resolution - managing the merge process
+During the development of your project you will make many changes to your files.  If you follow the “commit early, commit often” idea, then most of y">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Developer Workshops">
+<meta property="og:url" content="http://jr0cket.co.uk/dev-workshops/dev-workshops/git-basics/merging-changes.html">
+<meta property="og:site_name" content="Developer Workshops">
+<meta property="og:description" content="Conflict resolution - managing the merge process
+During the development of your project you will make many changes to your files.  If you follow the “commit early, commit often” idea, then most of y">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Developer Workshops">
+<meta name="twitter:description" content="Conflict resolution - managing the merge process
+During the development of your project you will make many changes to your files.  If you follow the “commit early, commit often” idea, then most of y">
+<meta name="twitter:site" content="@jr0cket">
+
+  
+</head>
+
+<body>
+  <header id="header">
+  <div class="outer">
+    <div class="inner">
+      <h1 id="logo-wrap">
+        <a href="/dev-workshops//" id="logo">Hexo</a>
+        <a id="main-nav-toggle"></a>
+      </h1>
+      <nav id="main-nav">
+        <ul id="main-nav-list">
+          
+            <li class="main-nav-item">
+              <a href="/dev-workshops//git-basics" class="main-nav-link">Git Basics</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/dev-workshops//git-tips" class="main-nav-link">Git Tips</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/dev-workshops//workshops" class="main-nav-link">More Workshops</a>
+            </li>
+          
+        </ul>
+        <a href="https://twitter.com/jr0cket" id="twitter-btn" title="Twitter" target="_blank"></a>
+        <a href="https://github.com/jr0cket" id="github-btn" title="GitHub" target="_blank"></a>
+        <a id="search-btn" class="st-search-launcher" title="Search"></a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+  <article class="page" itemscope itemtype="http://schema.org/Article">
+  <header id="page-banner">
+    <div class="outer">
+      <div id="page-banner-inner" class="inner">
+        <h1 id="page-title" itemprop="name"></h1>
+      </div>
+    </div>
+  </header>
+  <div class="outer">
+    <div id="mobile-menu-wrap"></div>
+    <div class="page-content">
+      <div class="toc-wrap">
+        <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Conflict_resolution_-_managing_the_merge_process"><span class="toc-number">1.</span> <span class="toc-text">Conflict resolution - managing the merge process</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#A_common_merge_conflict_with_Github"><span class="toc-number">1.1.</span> <span class="toc-text">A common merge conflict with Github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Working_with_pull_requests"><span class="toc-number">1.2.</span> <span class="toc-text">Working with pull requests</span></a></li></ol></li></ol>
+      </div>
+      <div class="page-entry" itemprop="articleBody">
+        <link href="index.css" rel="stylesheet" type="text/css">
+
+<h1 id="Conflict_resolution_-_managing_the_merge_process"><a id="top">Conflict resolution - managing the merge process</a></h1>
+<p>During the development of your project you will make many changes to your files.  If you follow the “commit early, commit often” idea, then most of your commits should be straight forward.</p>
+<p>Git is very good at merging changes together, although it has its limitations.</p>
+<p>The longer you leave a change to be commited or the bigger the change is you are making (especially to existing files), the more likely you will have to manage the merge process yourself.  </p>
+<h2 id="A_common_merge_conflict_with_Github">A common merge conflict with Github</h2>
+<p>When you create a new repository on Github you are given the choice of creating a Readme.md file and a .gitignore file for one of numerous languages.  These are both really useful things to have.</p>
+<p>However, if you already have a repository locally with a number of commits, when you create a github repository with these files then you are actually making a commit on the github repository as well.</p>
+<p>This leaves you with commits locally that you dont have on your github repository and a commit on your Github repository that you dont have locally.  As the commit is newer on the Github repository, then git will not push your local changes as it will not create a “fast-forward” commit.  A fast-forward commit is newer than any existing commits in that repository.</p>
+<p>To resolve this conflict, you have to pull the change you made in the Github (addint a Readme.md and/or .gitignore file) to your local repository.  This is done with the ommand:</p>
+<pre><code><span class="input"><span class="prompt">git pull &lt;repository&gt;</span> &lt;branch&gt;
+git pull github master</span>
+</code></pre><p>As your changes are out of sync between the local and Github repository, then you will have to manually merge those changes.</p>
+<p>Assuming you did not create a Readme.md or .gitignore file locally, then when you pull you should be able just <em>git add</em> the additional files and commit them with <em>git commit</em>.  Then you can finally push all these changes up to the Github repository.</p>
+<p>If you already had either the Readme.md file or .gitignore file locally, when you do a git pull the text from both versions of the file will be combined, with &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; markers denoting which text comes from which version .</p>
+<p>There is also a nice page on <a href="https://help.github.com/articles/dealing-with-non-fast-forward-errors" target="_blank" rel="external">Github help on dealing with non fast-forward errors</a>.  </p>
+<h2 id="Working_with_pull_requests">Working with pull requests</h2>
+<p>If you have a pull request that cant be automatically merged.  A committer on the project can offer suggestions on how the submitter can fix the pull request so it can be merged.  This typically includes:</p>
+<ul>
+<li>ensuring the submitter of the pull request has pulled all the changes down from the latest version of the original project.</li>
+<li>merging any changes between their code and the original project</li>
+</ul>
+<p>Once any merge conflicts are resolved, the submitter of the pull request can do another commit locally and to their forked repository on github and that will update the pull request automatically.</p>
+<p><a href="#top">Back to top…</a></p>
+<p><a href="index.html">Workshop homepage</a></p>
+
+      </div>
+      <footer id="page-footer">
+        <time id="page-footer-updated" datetime="2014-08-24T19:50:11.000Z" itemprop="dateModified">Last updated: Aug 24 2014</time>
+        
+      </footer>
+      
+    </div>
+      
+      <aside id="sidebar-git">
+  
+    <strong class="sidebar-title">Overview</strong>
+    
+      <a href="/dev-workshops/git-basics/git-in-2-minutes.html" class="sidebar-link">Git in 2 minutes</a>
+    
+      <a href="/dev-workshops/git-basics/git-overview.html" class="sidebar-link">Git Overview</a>
+    
+      <a href="/dev-workshops/git-basics/github-overview.html" class="sidebar-link">Github Overview</a>
+    
+  
+    <strong class="sidebar-title">Getting Started</strong>
+    
+      <a href="/dev-workshops/git-basics/git-clients.html" class="sidebar-link">Git Clients</a>
+    
+      <a href="/dev-workshops/git-basics/configure-git.html" class="sidebar-link">Configure Git</a>
+    
+      <a href="/dev-workshops/git-basics/create-github-account.html" class="sidebar-link">Create Github account</a>
+    
+  
+    <strong class="sidebar-title">Manage your project with Github</strong>
+    
+      <a href="/dev-workshops/git-basics/create-a-github-repository.html" class="sidebar-link">Create a Github repository</a>
+    
+      <a href="/dev-workshops/git-basics/clone-the-github-repository.html" class="sidebar-link">Clone the Github repository</a>
+    
+      <a href="/dev-workshops/git-basics/create-your-project.html" class="sidebar-link">Create your project</a>
+    
+  
+    <strong class="sidebar-title">Basic Git Workflow</strong>
+    
+      <a href="/dev-workshops/git-basics/checking-for-changes.html" class="sidebar-link">Checking for changes</a>
+    
+      <a href="/dev-workshops/git-basics/staging-changes.html" class="sidebar-link">Staging changes</a>
+    
+      <a href="/dev-workshops/git-basics/commiting-changes.html" class="sidebar-link">Commiting Changes</a>
+    
+      <a href="/dev-workshops/git-basics/viewing-history.html" class="sidebar-link">Viewing history</a>
+    
+  
+    <strong class="sidebar-title">Branch and Merge</strong>
+    
+      <a href="/dev-workshops/git-basics/creating-a-branch.html" class="sidebar-link">Creating a branch</a>
+    
+      <a href="/dev-workshops/git-basics/merging-changes.html" class="sidebar-link current">Merging Changes</a>
+    
+      <a href="/dev-workshops/git-basics/branching-strageties.html" class="sidebar-link">Branching strategies</a>
+    
+  
+    <strong class="sidebar-title">Customising Git further</strong>
+    
+      <a href="/dev-workshops/git-basics/aliases-for-nicer-git-output.html" class="sidebar-link">Aliases for nicer Git output</a>
+    
+  
+</aside>
+
+      
+  </div>
+</article>
+
+  <footer id="footer">
+  <div class="outer">
+    <div class="inner">
+      <div id="footer-copyright">
+        &copy; 2014 <a href="http://zespia.tw/">SkyArrow</a> and <a href="http://jr0cket.co.uk/">jr0cket</a><br> 
+        Background: <a href="http://subtlepatterns.com/shattered/" target="_blank">Shattered</a> by <a href="http://luukvanbaars.com/" target="_blank">Luuk van Baars</a>
+      </div>
+      <div id="footer-links">
+        <a href="https://twitter.com/jr0cket" id="footer-link-twitter" class="footer-link" target="_blank"><span>Twitter</span></a>
+        <a href="https://github.com/jr0cket" id="footer-link-github" class="footer-link" target="_blank"><span>GitHub</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+<!-- Swiftype -->
+<script>
+var Swiftype = window.Swiftype || {};
+(function() {
+  Swiftype.key = '';
+
+  /** DO NOT EDIT BELOW THIS LINE **/
+  var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+  script.src = "//s.swiftypecdn.com/embed.js";
+  var entry = document.getElementsByTagName('script')[0];
+  document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+}());
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/dev-workshops/js/retina.min.js" type="text/javascript"></script>
+
+<script src="/dev-workshops/js/script.js" type="text/javascript"></script>
+
+<!-- Google+ -->
+<script type="text/javascript" src="//apis.google.com/js/plusone.js"></script>
+<!-- Twitter -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</body>
+</html>

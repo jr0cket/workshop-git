@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Gith and Github Workshop | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="canonical" href="http://jr0cket.co.uk/dev-workshops/git-basics/index.html">
+  <link rel="apple-touch-icon" sizes="57x57" href="/dev-workshops/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/dev-workshops/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/dev-workshops/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/dev-workshops/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/dev-workshops/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/dev-workshops/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/dev-workshops/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/dev-workshops/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/dev-workshops/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/dev-workshops/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/dev-workshops/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/dev-workshops/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/dev-workshops/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/dev-workshops/mstile-144x144.png">
+  <link rel="stylesheet" href="/dev-workshops/css/style.css" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,700" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link rel="alternative" href="/dev-workshops/atom.xml" title="Developer Workshops" type="application/atom+xml">
+  <meta name="description" content="This tutorial will give you a practical guide to using the Git version control tool to managing changes to source code and configuration files in projects.  The tutorial also covers collaborating on p">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gith and Github Workshop">
+<meta property="og:url" content="http://jr0cket.co.uk/dev-workshops/dev-workshops/git-basics/index.html">
+<meta property="og:site_name" content="Developer Workshops">
+<meta property="og:description" content="This tutorial will give you a practical guide to using the Git version control tool to managing changes to source code and configuration files in projects.  The tutorial also covers collaborating on p">
+<meta property="og:image" content="images/git-local-workflow.png">
+<meta property="og:image" content="images/git-and-github-workflow.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gith and Github Workshop">
+<meta name="twitter:description" content="This tutorial will give you a practical guide to using the Git version control tool to managing changes to source code and configuration files in projects.  The tutorial also covers collaborating on p">
+<meta name="twitter:site" content="@jr0cket">
+
+  
+</head>
+
+<body>
+  <header id="header">
+  <div class="outer">
+    <div class="inner">
+      <h1 id="logo-wrap">
+        <a href="/dev-workshops//" id="logo">Hexo</a>
+        <a id="main-nav-toggle"></a>
+      </h1>
+      <nav id="main-nav">
+        <ul id="main-nav-list">
+          
+            <li class="main-nav-item">
+              <a href="/dev-workshops//git-basics" class="main-nav-link">Git Basics</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/dev-workshops//git-tips" class="main-nav-link">Git Tips</a>
+            </li>
+          
+            <li class="main-nav-item">
+              <a href="/dev-workshops//workshops" class="main-nav-link">More Workshops</a>
+            </li>
+          
+        </ul>
+        <a href="https://twitter.com/jr0cket" id="twitter-btn" title="Twitter" target="_blank"></a>
+        <a href="https://github.com/jr0cket" id="github-btn" title="GitHub" target="_blank"></a>
+        <a id="search-btn" class="st-search-launcher" title="Search"></a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+  <article class="page" itemscope itemtype="http://schema.org/Article">
+  <header id="page-banner">
+    <div class="outer">
+      <div id="page-banner-inner" class="inner">
+        <h1 id="page-title" itemprop="name">Gith and Github Workshop</h1>
+      </div>
+    </div>
+  </header>
+  <div class="outer">
+    <div id="mobile-menu-wrap"></div>
+    <div class="page-content">
+      <div class="toc-wrap">
+        <strong class="toc-title">Contents</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Setting_up_Git_&_Github"><span class="toc-number">1.</span> <span class="toc-text">Setting up Git & Github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating_Git_Projects"><span class="toc-number">2.</span> <span class="toc-text">Creating Git Projects</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Local_Git_Workflow"><span class="toc-number">3.</span> <span class="toc-text">Local Git Workflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Branching_&_Merging_-_why_do_this"><span class="toc-number">4.</span> <span class="toc-text">Branching & Merging  - why do this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Collaborating_with_other_developers_using_Git_and_Github"><span class="toc-number">5.</span> <span class="toc-text">Collaborating with other developers using Git and Github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Troubleshooting]"><span class="toc-number">6.</span> <span class="toc-text">Troubleshooting]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Resources"><span class="toc-number">7.</span> <span class="toc-text">Resources</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git_local_workflow_visualised"><span class="toc-number"></span> <span class="toc-text">Git local workflow visualised</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git_and_Github_workflow_visualised"><span class="toc-number"></span> <span class="toc-text">Git and Github workflow visualised</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number"></span> <span class="toc-text">Reference</span></a>
+      </div>
+      <div class="page-entry" itemprop="articleBody">
+        <p>This tutorial will give you a practical guide to using the Git version control tool to managing changes to source code and configuration files in projects.  The tutorial also covers collaborating on projects using Github public repositories.  You can either read an <a href="overview-of-git.html">overview of Git</a></p>
+<h2 id="Setting_up_Git_&amp;_Github">Setting up Git &amp; Github</h2>
+<ul>
+<li><a href="choose-your-git-client.html">Choose your git client</a></li>
+<li><a href="identify-yourself-to-git.html">Identify yourself to Git</a></li>
+<li><a href="create-account-on-github.html">Create an account on Github</a></li>
+</ul>
+<h2 id="Creating_Git_Projects">Creating Git Projects</h2>
+<ul>
+<li><a href="chapter05-creating-a-git-managed-project.html">Creating a Git managed project</a></li>
+<li><a href="chapter06-ignoring-files.html">Ignoring files</a></li>
+</ul>
+<h2 id="Local_Git_Workflow">Local Git Workflow</h2>
+<ul>
+<li>Checking the status - what has changed — git status, git diff </li>
+<li>Staging changes  - basic add, git add -p, unstaging untracked files, unstaging tracked files, git diff —cached </li>
+<li>Committing a new version </li>
+<li>Git log </li>
+<li><a href="chapter07-local-git-workflow.html">Chapter 7: The local git workflow</a></li>
+</ul>
+<h2 id="Branching_&amp;_Merging_-_why_do_this">Branching &amp; Merging  - why do this</h2>
+<ul>
+<li>try out code and modifications to design, different algorithms </li>
+<li>easily discard changes that are not needed - or leave them in a branch so they are not affecting / poluting the main codebase</li>
+</ul>
+<ul>
+<li><a href="chapter09-branch-and-merge.html">Branching and Merging</a></li>
+<li><a href="merging-changes.html">merging changes</a></li>
+</ul>
+<h2 id="Collaborating_with_other_developers_using_Git_and_Github">Collaborating with other developers using Git and Github</h2>
+<ul>
+<li><a href="collaborating-with-github.html">Chapter 10: Collaborating with Github</a></li>
+<li>Practices to avoid when using shared repos like Github</li>
+</ul>
+<ul>
+<li>rebasing, forgetting to push changes (especially for sub modules)</li>
+</ul>
+<h2 id="Troubleshooting]">Troubleshooting]</h2>
+<ul>
+<li>what to do if you loose your head </li>
+<li>if you really have to change a commit</li>
+<li>unstage changes</li>
+</ul>
+<h2 id="Resources">Resources</h2>
+<ul>
+<li>Git submodules</li>
+</ul>
+<h1 id="Git_local_workflow_visualised">Git local workflow visualised</h1>
+<p>You can quickly get versioning your code with Git, all on your own computer.  You do not need to set up a server.</p>
+<p><img class="img-code" src="images/git-local-workflow.png"></p>
+<h1 id="Git_and_Github_workflow_visualised">Git and Github workflow visualised</h1>
+<p>To give you a big picture view of how you use Git and Github, here is a visualisation of the workflow for both.  The details of this workflow are ocvered in the workshop from <a href="chapter10-collaborating-with-github.html">Chapter 10: Collaborating with Github</a> onwards.</p>
+<p><img class="img-code" src="images/git-and-github-workflow.png"></p>
+<h1 id="Reference">Reference</h1>
+<ul>
+<li><a href="/developer-guides/git-quickstart-guide.png">Git essential commands</a> for the most common commands for using Git</li>
+<li><a href="http://ndpsoftware.com/git-cheatsheet.html" target="_blank" rel="external">Git Visual cheat sheet</a></li>
+<li><a href="http://starlogs.net/#jr0cket/jr0cket.github.io-hexo" target="_blank" rel="external">StarLogs.net demo from my blog</a></li>
+<li><a href="http://jr0cket.github.io/jr0cket.github.io-hexo/" target="_blank" rel="external">Github repository for this workshop</a> - pull requests welcome :)</li>
+</ul>
+<p>Last update: Tue 28 Oct 2014 10:10:44 GMT</p>
+
+      </div>
+      <footer id="page-footer">
+        <time id="page-footer-updated" datetime="2014-10-28T10:10:57.000Z" itemprop="dateModified">Last updated: Oct 28 2014</time>
+        
+      </footer>
+      
+    </div>
+      
+      <aside id="sidebar-git">
+  
+    <strong class="sidebar-title">Overview</strong>
+    
+      <a href="/dev-workshops/git-basics/git-in-2-minutes.html" class="sidebar-link">Git in 2 minutes</a>
+    
+      <a href="/dev-workshops/git-basics/git-overview.html" class="sidebar-link">Git Overview</a>
+    
+      <a href="/dev-workshops/git-basics/github-overview.html" class="sidebar-link">Github Overview</a>
+    
+  
+    <strong class="sidebar-title">Getting Started</strong>
+    
+      <a href="/dev-workshops/git-basics/git-clients.html" class="sidebar-link">Git Clients</a>
+    
+      <a href="/dev-workshops/git-basics/configure-git.html" class="sidebar-link">Configure Git</a>
+    
+      <a href="/dev-workshops/git-basics/create-github-account.html" class="sidebar-link">Create Github account</a>
+    
+  
+    <strong class="sidebar-title">Manage your project with Github</strong>
+    
+      <a href="/dev-workshops/git-basics/create-a-github-repository.html" class="sidebar-link">Create a Github repository</a>
+    
+      <a href="/dev-workshops/git-basics/clone-the-github-repository.html" class="sidebar-link">Clone the Github repository</a>
+    
+      <a href="/dev-workshops/git-basics/create-your-project.html" class="sidebar-link">Create your project</a>
+    
+  
+    <strong class="sidebar-title">Basic Git Workflow</strong>
+    
+      <a href="/dev-workshops/git-basics/checking-for-changes.html" class="sidebar-link">Checking for changes</a>
+    
+      <a href="/dev-workshops/git-basics/staging-changes.html" class="sidebar-link">Staging changes</a>
+    
+      <a href="/dev-workshops/git-basics/commiting-changes.html" class="sidebar-link">Commiting Changes</a>
+    
+      <a href="/dev-workshops/git-basics/viewing-history.html" class="sidebar-link">Viewing history</a>
+    
+  
+    <strong class="sidebar-title">Branch and Merge</strong>
+    
+      <a href="/dev-workshops/git-basics/creating-a-branch.html" class="sidebar-link">Creating a branch</a>
+    
+      <a href="/dev-workshops/git-basics/merging-changes.html" class="sidebar-link">Merging Changes</a>
+    
+      <a href="/dev-workshops/git-basics/branching-strageties.html" class="sidebar-link">Branching strategies</a>
+    
+  
+    <strong class="sidebar-title">Customising Git further</strong>
+    
+      <a href="/dev-workshops/git-basics/aliases-for-nicer-git-output.html" class="sidebar-link">Aliases for nicer Git output</a>
+    
+  
+</aside>
+
+      
+  </div>
+</article>
+
+  <footer id="footer">
+  <div class="outer">
+    <div class="inner">
+      <div id="footer-copyright">
+        &copy; 2014 <a href="http://zespia.tw/">SkyArrow</a> and <a href="http://jr0cket.co.uk/">jr0cket</a><br> 
+        Background: <a href="http://subtlepatterns.com/shattered/" target="_blank">Shattered</a> by <a href="http://luukvanbaars.com/" target="_blank">Luuk van Baars</a>
+      </div>
+      <div id="footer-links">
+        <a href="https://twitter.com/jr0cket" id="footer-link-twitter" class="footer-link" target="_blank"><span>Twitter</span></a>
+        <a href="https://github.com/jr0cket" id="footer-link-github" class="footer-link" target="_blank"><span>GitHub</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  
+<!-- Swiftype -->
+<script>
+var Swiftype = window.Swiftype || {};
+(function() {
+  Swiftype.key = '';
+
+  /** DO NOT EDIT BELOW THIS LINE **/
+  var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+  script.src = "//s.swiftypecdn.com/embed.js";
+  var entry = document.getElementsByTagName('script')[0];
+  document.getElementsByTagName('script')[0].parentNode.insertBefore(script, entry);
+}());
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/dev-workshops/js/retina.min.js" type="text/javascript"></script>
+
+<script src="/dev-workshops/js/script.js" type="text/javascript"></script>
+
+<!-- Google+ -->
+<script type="text/javascript" src="//apis.google.com/js/plusone.js"></script>
+<!-- Twitter -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+</body>
+</html>
